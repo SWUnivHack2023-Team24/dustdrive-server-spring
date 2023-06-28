@@ -2,11 +2,13 @@ package com.dustdrive.infodustdrive.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Builder
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(collection = "car")
@@ -17,7 +19,6 @@ public class Car {
     private Long number;
 
     public void updateInfo(Car car) {
-        this.id = car.id;
         this.number = car.number;
     }
 }
