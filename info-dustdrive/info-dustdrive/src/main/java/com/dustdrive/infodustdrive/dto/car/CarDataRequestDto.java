@@ -1,4 +1,4 @@
-package com.dustdrive.infodustdrive.dto;
+package com.dustdrive.infodustdrive.dto.car;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

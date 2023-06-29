@@ -1,6 +1,9 @@
 package com.dustdrive.infodustdrive.service;
 
-import com.dustdrive.infodustdrive.dto.*;
+import com.dustdrive.infodustdrive.dto.car.CarDataRequestDto;
+import com.dustdrive.infodustdrive.dto.car.CarDataResponseDto;
+import com.dustdrive.infodustdrive.dto.car.CarInfoRequestDto;
+import com.dustdrive.infodustdrive.dto.car.CarInfoResponseDto;
 import com.dustdrive.infodustdrive.entity.Car;
 import com.dustdrive.infodustdrive.repository.CarRepository;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -36,13 +38,15 @@ public class CarService {
 
         HttpEntity<CarDataRequestDto> request = new HttpEntity<>(carDataRequestDto, headers);
 
-        ResponseEntity<CarDataResponseDto> response = restTemplate.postForEntity(url, request, CarDataResponseDto.class);
+
+        ResponseEntity<CarDataResponseDto> response
+                = restTemplate.postForEntity(url, request, CarDataResponseDto.class);
         CarDataResponseDto dataResponseDto = response.getBody();
 
         // Data 확인하기
         Boolean isUnavailable = false;
 
-        if ((!dataResponseDto.getData().equals("diesel")) || dataResponseDto.getData().getFuelEffRank() >= 4) {
+        if ((dataResponseDto.getData().getFuelType().equals("diesel")) && dataResponseDto.getData().getFuelEffRank() >= 4) {
             isUnavailable = true;
         }
 

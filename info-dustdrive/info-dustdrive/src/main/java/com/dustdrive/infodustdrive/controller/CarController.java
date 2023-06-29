@@ -1,7 +1,7 @@
 package com.dustdrive.infodustdrive.controller;
 
-import com.dustdrive.infodustdrive.dto.CarInfoRequestDto;
-import com.dustdrive.infodustdrive.dto.CarInfoResponseDto;
+import com.dustdrive.infodustdrive.dto.car.CarInfoRequestDto;
+import com.dustdrive.infodustdrive.dto.car.CarInfoResponseDto;
 import com.dustdrive.infodustdrive.entity.Car;
 import com.dustdrive.infodustdrive.service.CarService;
 import lombok.RequiredArgsConstructor;
