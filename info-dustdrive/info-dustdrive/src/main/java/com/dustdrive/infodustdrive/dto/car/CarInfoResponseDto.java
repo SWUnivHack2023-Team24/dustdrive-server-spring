@@ -12,14 +12,16 @@ public class CarInfoResponseDto {
     private String carNum;
     private String carType;
     private int fuelEffRank;
+    private int year;
 
     @Builder
-    public CarInfoResponseDto(Boolean isUnavailable, String userName, String carNum, String carType, int fuelEffRank) {
+    public CarInfoResponseDto(Boolean isUnavailable, String userName, String carNum, String carType, int fuelEffRank,int year) {
         this.isUnavailable = isUnavailable;
         this.userName = userName;
         this.carNum = carNum;
         this.carType = carType;
         this.fuelEffRank = fuelEffRank;
+        this.year = year;
     }
 
 }

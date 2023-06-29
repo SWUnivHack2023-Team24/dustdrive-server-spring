@@ -13,4 +13,5 @@ public class CarDataDto {
     private int fuelEffRank;
     private String carType;
     private String fuelType;
+    private int year;
 }

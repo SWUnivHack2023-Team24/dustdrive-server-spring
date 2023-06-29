@@ -50,6 +50,7 @@ public class CarService {
                 .carNum(dataResponseDto.getData().getVhcNo())
                 .userName(dataResponseDto.getData().getName())
                 .fuelEffRank(dataResponseDto.getData().getFuelEffRank())
+                .year(dataResponseDto.getData().getYear())
                 .build();
     }
 
