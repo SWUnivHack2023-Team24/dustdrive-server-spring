@@ -1,5 +1,7 @@
 package com.dustdrive.infodustdrive.controller;
 
+import com.dustdrive.infodustdrive.dto.CarInfoRequestDto;
+import com.dustdrive.infodustdrive.dto.CarInfoResponseDto;
 import com.dustdrive.infodustdrive.entity.Car;
 import com.dustdrive.infodustdrive.service.CarService;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +18,11 @@ public class CarController {
     private final CarService carService;
 
     // 자동차 통행 여부 확인
+    @GetMapping("/api/v1/car/check")
+    public CarInfoResponseDto checkCarInfo(@RequestBody CarInfoRequestDto carInfoRequestDto) {
+        return carService.checkCarInfo(carInfoRequestDto);
+    }
+
     @GetMapping("/api/v1/car")
     public List<Car> findAllCar() {
         return carService.findAll();
@@ -25,5 +32,4 @@ public class CarController {
     public Car save(@RequestBody Car car) {
         return carService.save(car);
     }
-
 }

@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 @Builder
 @Getter
 @NoArgsConstructor
@@ -17,4 +20,5 @@ public class FineDust {
     private String id;
 
     private Double density;
+    private LocalDate localDate;
 }

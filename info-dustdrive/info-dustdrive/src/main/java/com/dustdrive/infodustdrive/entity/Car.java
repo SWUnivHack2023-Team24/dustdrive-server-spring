@@ -1,11 +1,14 @@
 package com.dustdrive.infodustdrive.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.time.LocalDate;
 
 @Builder
 @Getter
@@ -17,6 +20,10 @@ public class Car {
     private String id;
 
     private Long number;
+
+    private LocalDate localDate;
+
+    private String type;
 
     public void updateInfo(Car car) {
         this.number = car.number;
