@@ -4,6 +4,10 @@ import com.dustdrive.infodustdrive.dto.fine_dust.FineDustInfoRequestDto;
 import com.dustdrive.infodustdrive.dto.fine_dust.FineDustInfoResponseDto;
 import com.dustdrive.infodustdrive.dto.fine_dust.date.FineDustDateRequestDto;
 import com.dustdrive.infodustdrive.dto.fine_dust.date.FineDustDateResponseDto;
+import com.dustdrive.infodustdrive.dto.fine_dust.month.FineDustMonthDataRequestDto;
+import com.dustdrive.infodustdrive.dto.fine_dust.month.FineDustMonthDataResponseDto;
+import com.dustdrive.infodustdrive.dto.fine_dust.month.FineDustMonthRequestDto;
+import com.dustdrive.infodustdrive.dto.fine_dust.month.FineDustMonthResponseDto;
 import com.dustdrive.infodustdrive.dto.fine_dust.real_time.FineDustRealTimeRequestDto;
 import com.dustdrive.infodustdrive.dto.fine_dust.real_time.FineDustRealTimeResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +23,38 @@ import java.time.LocalDate;
 @Service
 @RequiredArgsConstructor
 public class FineDustService {
+
+    /**
+     * 미세먼지 이전 30일 + 이후 예상 7일 조회
+     */
+    public FineDustMonthResponseDto findMonthly(FineDustMonthRequestDto fineDustMonthRequestDto) {
+        RestTemplate restTemplate = new RestTemplate();
+
+        String url = "https://predict.dustdrive.info/predict_monthly";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        // 수정하기
+        FineDustMonthDataRequestDto requestDto = FineDustMonthDataRequestDto.builder()
+                .region(fineDustMonthRequestDto.getRegion())
+                .date(fineDustMonthRequestDto.getDate())
+                .build();
+
+        HttpEntity<FineDustMonthDataRequestDto> request
+                = new HttpEntity<>(requestDto, headers);
+
+        ResponseEntity<FineDustMonthDataResponseDto> response
+                = restTemplate.postForEntity(url, request, FineDustMonthDataResponseDto.class);
+
+        FineDustMonthDataResponseDto body = response.getBody();
+
+        // 수정하기
+        return FineDustMonthResponseDto.builder()
+                .data(body.getData())
+                .build();
+    }
+
     /**
      * 미세먼지 날짜별 확인
      */
@@ -51,9 +87,6 @@ public class FineDustService {
 
         // 테스트용
         fineDustDateResponseDto.setLocalDate(fineDustDateRequestDto.getLocalDate());
-        fineDustDateResponseDto.setSuccess(responseDto.getSuccess());
-        fineDustDateResponseDto.setError(responseDto.getError());
-        fineDustDateResponseDto.setStatus(responseDto.getStatus());
 
         return fineDustDateResponseDto;
     }
@@ -90,12 +123,7 @@ public class FineDustService {
 
         // 테스트용
         fineDustRealTimeResponseDto.setLocalDate(requestDto.getDate());
-        fineDustRealTimeResponseDto.setSuccess(responseDto.getSuccess());
-        fineDustRealTimeResponseDto.setError(responseDto.getError());
-        fineDustRealTimeResponseDto.setStatus(responseDto.getStatus());
 
         return fineDustRealTimeResponseDto;
     }
-
-
 }

@@ -1,0 +1,20 @@
+package com.dustdrive.infodustdrive.dto.fine_dust.month;
+
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+public class FineDustMonthDataRequestDto {
+    private String region;
+    private String date;
+
+    @Builder
+    public FineDustMonthDataRequestDto(String region, String date) {
+        this.region = region;
+        this.date = date;
+    }
+}
