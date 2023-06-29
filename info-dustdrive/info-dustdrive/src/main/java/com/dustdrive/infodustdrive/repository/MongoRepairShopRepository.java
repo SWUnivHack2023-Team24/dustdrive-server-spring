@@ -26,7 +26,11 @@ public class MongoRepairShopRepository {
     }
 
     public List<RepairShop> findRepairShopNear(Point location) {
-        Distance distance = new Distance(4, Metrics.KILOMETERS);
+        Distance distance = new Distance(20, Metrics.KILOMETERS);
         return repository.findByLocationNear(location, distance);
+    }
+
+    public List<RepairShop> findAll() {
+        return repository.findAll();
     }
 }

@@ -18,8 +18,9 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 public class RepairShop {
     @MongoId
     private String id;
-    private String name;
-
+    private String shop;
+    private String address;
+    private String tel;
     @GeoSpatialIndexed(type = GeoSpatialIndexType.GEO_2DSPHERE)
     private Point location; //{"x": 3.56, "y":5.89}
 }
