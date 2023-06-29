@@ -4,7 +4,7 @@ spring:
   data:
     mongodb:
       authentication-database: admin
-      database: test
+      database: dustDrive_prod
       uri: mongodb+srv://dustdrivedev:2HMxc9JN0cqPd2nb@cluster0.ovtfl8q.mongodb.net/dustdrive_dev
 
   autoconfigure:

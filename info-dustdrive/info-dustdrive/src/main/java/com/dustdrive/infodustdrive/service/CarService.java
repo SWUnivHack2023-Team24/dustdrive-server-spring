@@ -4,8 +4,6 @@ import com.dustdrive.infodustdrive.dto.car.CarDataRequestDto;
 import com.dustdrive.infodustdrive.dto.car.CarDataResponseDto;
 import com.dustdrive.infodustdrive.dto.car.CarInfoRequestDto;
 import com.dustdrive.infodustdrive.dto.car.CarInfoResponseDto;
-import com.dustdrive.infodustdrive.entity.Car;
-import com.dustdrive.infodustdrive.repository.CarRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -14,14 +12,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
-
 @Service
 @RequiredArgsConstructor
 public class CarService {
     // 자동차 노후 여부 조회
-
-    private final CarRepository carRepository;
 
     public CarInfoResponseDto checkCarInfo(CarInfoRequestDto carInfoRequestDto) {
         // Data 가져오기
@@ -59,6 +53,7 @@ public class CarService {
                 .build();
     }
 
+    /*
     public Car findById(String id) {
         return carRepository.findById(id).get();
     }
@@ -81,4 +76,5 @@ public class CarService {
         carRepository.deleteById(id);
         return true;
     }
+    */
 }
